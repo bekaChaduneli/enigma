@@ -1,7 +1,5 @@
 "use client";
 
-import { Card } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
 import {
     ArrowRight,
     Code,
@@ -11,6 +9,9 @@ import {
     VideoIcon,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
+
+import { Card } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
 const tools = [
     {
@@ -49,8 +50,10 @@ const tools = [
         href: "/code",
     },
 ];
-export default function DashboardPage() {
+
+export default function HomePage() {
     const router = useRouter();
+
     return (
         <div>
             <div className="mb-8 space-y-4">
@@ -61,7 +64,7 @@ export default function DashboardPage() {
                     Chat with the smartest AI - Experience the power of AI
                 </p>
             </div>
-            <div className="px-4 md:px-20 lg: px-32 space-y-4 ">
+            <div className="px-4 md:px-20 lg:px-32 space-y-4">
                 {tools.map((tool) => (
                     <Card
                         onClick={() => router.push(tool.href)}
@@ -71,7 +74,7 @@ export default function DashboardPage() {
                         <div className="flex items-center gap-x-4">
                             <div
                                 className={cn(
-                                    `p-2 w-fit rounded-md bg-[${tool.bgColor}]`,
+                                    "p-2 w-fit rounded-md",
                                     tool.bgColor
                                 )}
                             >
@@ -81,7 +84,7 @@ export default function DashboardPage() {
                             </div>
                             <div className="font-semibold">{tool.label}</div>
                         </div>
-                        <ArrowRight className="w-5 h-5 " />
+                        <ArrowRight className="w-5 h-5" />
                     </Card>
                 ))}
             </div>
