@@ -12,11 +12,13 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 
-import { formSchema } from "./constants";
 import Heading from "@/components/heading";
 import Loader from "@/components/loader";
 import Empty from "@/components/empty";
 import { useProModal } from "@/hooks/use-pro-modal";
+
+import { formSchema } from "./constants";
+import { toast } from "react-hot-toast";
 
 const VideoPage = () => {
     const router = useRouter();
@@ -43,7 +45,7 @@ const VideoPage = () => {
             if (error?.response?.status === 403) {
                 proModal.onOpen();
             } else {
-                console.log("Something went wrong");
+                toast.error("Something went wrong");
             }
         } finally {
             router.refresh();

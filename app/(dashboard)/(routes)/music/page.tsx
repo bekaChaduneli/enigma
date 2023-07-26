@@ -5,6 +5,7 @@ import axios from "axios";
 import { Music } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
@@ -43,7 +44,7 @@ const MusicPage = () => {
             if (error?.response?.status === 403) {
                 proModal.onOpen();
             } else {
-                console.log("Something went wrong");
+                toast.error("Something went wrong");
             }
         } finally {
             router.refresh();

@@ -1,5 +1,6 @@
 "use client";
 
+import { toast } from "react-hot-toast";
 import * as z from "zod";
 import axios from "axios";
 import { Code } from "lucide-react";
@@ -57,7 +58,7 @@ const CodePage = () => {
             if (error?.response?.status === 403) {
                 proModal.onOpen();
             } else {
-                console.log("Something went wrong");
+                toast.error("Something went wrong");
             }
         } finally {
             router.refresh();
