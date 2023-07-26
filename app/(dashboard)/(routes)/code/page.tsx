@@ -19,7 +19,7 @@ import BotAvatar from "@/components/bot-avatar";
 import Loader from "@/components/loader";
 import UserAvatar from "@/components/user-avatar";
 import Empty from "@/components/empty";
-import { useProModal } from "@/app/hooks/use-pro-modal";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 import { formSchema } from "./constants";
 

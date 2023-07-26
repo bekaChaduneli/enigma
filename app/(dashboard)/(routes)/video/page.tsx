@@ -16,7 +16,7 @@ import { formSchema } from "./constants";
 import Heading from "@/components/heading";
 import Loader from "@/components/loader";
 import Empty from "@/components/empty";
-import { useProModal } from "@/app/hooks/use-pro-modal";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 const VideoPage = () => {
     const router = useRouter();
