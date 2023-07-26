@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import ProModal from "@/components/pro-modal";
 
-const ModalProvider = () => {
+import { ProModal } from "@/components/pro-modal";
+
+export const ModalProvider = () => {
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
@@ -13,11 +14,10 @@ const ModalProvider = () => {
     if (!isMounted) {
         return null;
     }
+
     return (
         <>
             <ProModal />
         </>
     );
 };
-
-export default ModalProvider;

@@ -1,5 +1,7 @@
 "use client";
 
+import axios from "axios";
+import { useState } from "react";
 import {
     Check,
     Code,
@@ -9,20 +11,21 @@ import {
     VideoIcon,
     Zap,
 } from "lucide-react";
+import { toast } from "react-hot-toast";
 
 import {
     Dialog,
     DialogContent,
-    DialogDescription,
-    DialogFooter,
     DialogHeader,
     DialogTitle,
+    DialogDescription,
+    DialogFooter,
 } from "@/components/ui/dialog";
-import { useProModal } from "@/hooks/use-pro-modal";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { useProModal } from "@/hooks/use-pro-modal";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 
 const tools = [
     {
@@ -62,14 +65,29 @@ const tools = [
     },
 ];
 
-const ProModal = () => {
+export const ProModal = () => {
     const proModal = useProModal();
+    const [loading, setLoading] = useState(false);
+
+    const onSubscribe = async () => {
+        try {
+            setLoading(true);
+            const response = await axios.get("/api/stripe");
+
+            window.location.href = response.data.url;
+        } catch (error) {
+            toast.error("Something went wrong");
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <Dialog open={proModal.isOpen} onOpenChange={proModal.onClose}>
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle className="flex justify-center items-center flex-col gap-y-4 pb-2">
-                        <div className="flex items-center gap-x-2 font-bold py-1">
+                        <div className="flex items-center gap-x-2 font-bold text-xl">
                             Upgrade to Enigma
                             <Badge
                                 variant="premium"
@@ -82,7 +100,7 @@ const ProModal = () => {
                     <DialogDescription className="text-center pt-2 space-y-2 text-zinc-900 font-medium">
                         {tools.map((tool) => (
                             <Card
-                                key={tool.label}
+                                key={tool.href}
                                 className="p-3 border-black/5 flex items-center justify-between"
                             >
                                 <div className="flex items-center gap-x-4">
@@ -109,7 +127,13 @@ const ProModal = () => {
                     </DialogDescription>
                 </DialogHeader>
                 <DialogFooter>
-                    <Button size="lg" variant="premium" className="w-full">
+                    <Button
+                        disabled={loading}
+                        onClick={onSubscribe}
+                        size="lg"
+                        variant="premium"
+                        className="w-full"
+                    >
                         Upgrade
                         <Zap className="w-4 h-4 ml-2 fill-white" />
                     </Button>
@@ -118,5 +142,3 @@ const ProModal = () => {
         </Dialog>
     );
 };
-
-export default ProModal;
