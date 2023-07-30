@@ -35,7 +35,6 @@ The main goal was to gain experience with the artificial intelligence API, maste
 -   Shadcn
 -   Zod
 -   Axios
--   Crisp
 -   Lucide
 -   Zustand
 
