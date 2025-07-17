@@ -16,7 +16,6 @@ The main goal was to gain experience with the artificial intelligence API, maste
 
 ### Links
 
--   Live Site URL: [Live site](https://enigma-tau.vercel.app/)
 -   Solution URL: [Solution URL](https://github.com/bekaChaduneli/enigma)
 
 ### Built with
